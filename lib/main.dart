@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:mini_project2/descriptionscreen.dart';
 import 'package:mini_project2/mainscreen.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Mini Project',
       theme: ThemeData(
       ),
-      home: Mainscreen(),
+      home:Mainscreen(),
 
     );
   }

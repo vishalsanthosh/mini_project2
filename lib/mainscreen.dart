@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project2/database.dart';
+import 'package:mini_project2/descriptionscreen.dart';
 
 class Mainscreen extends StatelessWidget {
   final List<String> imageUrl=[
@@ -114,26 +115,33 @@ class Mainscreen extends StatelessWidget {
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.white70),
                 padding: EdgeInsets.all(15),
                 margin: EdgeInsets.all(15), 
-                height: 150,
-                width: 150,
+                height: 200,
+                width: 200,
                 
                  child: Column(
                   children: [
-                    Image.asset(Database.phoneList[index]["image"],height: 80,),
-                     Text(Database.phoneList[index]["name"]),
-                    Center(
-                      child: Row(
-                      
-                        children: [
-                           Icon(Icons.currency_rupee,size: 17,),
-                           Spacer(),
-                           
-
-                      Text(Database.phoneList[index]["price"]),
-                      Spacer(),
-                      Text(Database.phoneList[index]["buy"],style: TextStyle(color: Colors.red,fontWeight:FontWeight.bold,fontSize: 17),),
-                           
-                        ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>DescriptionScreenExp(imagePath: Database.phoneList[index]["image"], name: Database.phoneList[index]["name"], price: Database.phoneList[index]["price"], description: Database.phoneList[index]["des"])));
+                      },
+                    ),
+                    Image.asset(Database.phoneList[index]["image"],height: 80,width: 150,),
+                     Text(Database.phoneList[index]["name"],style: TextStyle(fontSize: 15),),
+                    Expanded(
+                      child: Center(
+                        child: Row(
+                        
+                          children: [
+                             Icon(Icons.currency_rupee,size: 17,),
+                             Spacer(),
+                             
+                                       
+                        Text(Database.phoneList[index]["price"],style: TextStyle(fontSize: 15),),
+                        Spacer(),
+                        Text(Database.phoneList[index]["buy"],style: TextStyle(color: Colors.red,fontWeight:FontWeight.bold,fontSize: 17),),
+                             
+                          ],
+                        ),
                       ),
                     )
                   
