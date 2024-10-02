@@ -65,7 +65,7 @@ class Mainscreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(Icons.search,size: 25,color: Colors.blue,),
-                      Text("Search Phones...............",style: TextStyle(color: Colors.red,fontSize: 15,fontWeight: FontWeight.bold),),
+                      Text("Search Phones...............",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
                       Spacer(),
                       Icon(Icons.mic,color: Colors.blue,size: 25,),
                       Icon(Icons.camera,size: 25,color: Colors.red,)
@@ -102,52 +102,54 @@ class Mainscreen extends StatelessWidget {
               
             ],
           ),
-          SizedBox(height: 5,),
+          
           Expanded(
             child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 10,
+              mainAxisSpacing: 5,
               crossAxisSpacing: 5,
+              childAspectRatio: 6/9,
               
               crossAxisCount: 2),
               itemCount: 4,
                itemBuilder: (BuildContext context,int index){
                 return Container(
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.white70),
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.all(15), 
-                height: 200,
-                width: 200,
+                
+
+                height: 500,
+                width: 500,
                 
                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=>DescriptionScreenExp(imagePath: Database.phoneList[index]["image"], name: Database.phoneList[index]["name"], price: Database.phoneList[index]["price"], description: Database.phoneList[index]["des"])));
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>DescriptionScreenExp(
+                          imagePath: Database.phoneList[index]["image"], name: Database.phoneList[index]["name"],
+                           price: Database.phoneList[index]["price"],
+                            description: Database.phoneList[index]["des"])));
                       },
                     ),
-                    Image.asset(Database.phoneList[index]["image"],height: 80,width: 150,),
-                     Text(Database.phoneList[index]["name"],style: TextStyle(fontSize: 15),),
-                    Expanded(
-                      child: Center(
-                        child: Row(
+                    Container(
+                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage(Database.phoneList[index]["image"],))),height: 118,
+                      width: double.infinity,
+                      child:Expanded(
+                        child: Column(
+                           children: [
+                           
+                           Row(
+                            children: [
+                              Text(Database.phoneList[index]["name"]),
+                              Spacer(),
+                              Icon(Icons.currency_rupee),
+                              Text(Database.phoneList[index]["price"])
+                            ],
+                           
                         
-                          children: [
-                             Icon(Icons.currency_rupee,size: 17,),
-                             Spacer(),
-                             
-                                       
-                        Text(Database.phoneList[index]["price"],style: TextStyle(fontSize: 15),),
-                        Spacer(),
-                        Text(Database.phoneList[index]["buy"],style: TextStyle(color: Colors.red,fontWeight:FontWeight.bold,fontSize: 17),),
-                             
-                          ],
-                        ),
-                      ),
-                    )
-                  
-                  ],
+                                            )]),
+                      )
+                 )]
                  )
-                 
                 );
                }),
           )

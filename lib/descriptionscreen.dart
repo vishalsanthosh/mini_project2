@@ -100,29 +100,58 @@ DescriptionScreenExp({required this.imagePath,required this.name,required this.p
               
             ),
           ),
-          SizedBox(height: 30,),
-          Row(
-            children: [
-              Icon(Icons.currency_rupee),
-              Text(price),
-              SizedBox(width: 60),
-              Container(
-                height: 70,
-                width: 200,
-                decoration: BoxDecoration(border:Border.all(color: Colors.black),color: Colors.white),
-                child: ElevatedButton(onPressed:
-                
-                 (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreenExp(imagePath: Database.phoneList[index]["image"], name: name, price: price))); 
-                }, child: Text("ADD TO CART")),
-              )
-            ],
+          SizedBox(height: 5,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container( 
+                  height: 60,
+                  width: 100,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Colors.blue[200]),
+                  child: Row(
+                    children: [
+                      Icon(Icons.currency_rupee,color: Colors.red,),
+                      Text(price,style: TextStyle(fontSize: 15),)
+                    ],
+                  )
+                ),
+               
+                Spacer(),
+                Container(
+                  height: 70,
+                  width: 140,
+                  decoration: BoxDecoration(border:Border.all(color: Colors.black),color: Colors.white),
+                  child: ElevatedButton(onPressed:
+                  
+                   (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreenExp(imagePath: imagePath, name: name, price: price))); 
+                  }, child: Text("ADD TO CART")),
+                )
+              ],
+            ),
           )
           
         ],
 
       ),
-      
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.black,
+        items:[
+          BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"
+          ),
+           BottomNavigationBarItem(icon: Icon(Icons.directions),label: "Explore"
+          ),
+           BottomNavigationBarItem(icon: Icon(Icons.category_rounded),label: "Categories"
+          ),
+           BottomNavigationBarItem(icon: Icon(Icons.person),label: "Account"
+          ),
+           BottomNavigationBarItem(icon: Icon(Icons.shopping_basket),label: "Cart"
+          ),
+          
+        ]),
     );
+    
   }
 }
